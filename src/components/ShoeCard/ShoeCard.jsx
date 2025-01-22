@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { COLORS, WEIGHTS } from '../../constants';
 import { formatPrice, pluralize, isNewShoe } from '../../utils';
 import Spacer from '../Spacer';
+import Tag from '../Tag/Tag';
 
 const ShoeCard = ({
   slug,
@@ -29,11 +30,12 @@ const ShoeCard = ({
     ? 'on-sale'
     : isNewShoe(releaseDate)
       ? 'new-release'
-      : 'default'
+      : 'default';
 
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
+        <Tag variant={variant}/>
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
         </ImageWrapper>
@@ -54,9 +56,11 @@ const Link = styled.a`
   flex: 1 1 344px;
   text-decoration: none;
   color: inherit;
-`;
-
-const Wrapper = styled.article`
+  `;
+  
+  const Wrapper = styled.article`
+  position: relative;
+  z-index: 1;
   width: inherit;
   height: 370px;
 `;
